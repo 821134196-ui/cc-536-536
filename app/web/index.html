@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>图书馆阅读挑战</title>
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">📚</span>
+    <div>
+      <h1>图书馆阅读挑战</h1>
+      <p class="tagline">按龄组挑战 · 借阅核对 · 达标领章</p>
+    </div>
+  </div>
+  <nav class="roles">
+    <button data-view="child" class="role-btn active">孩子端</button>
+    <button data-view="parent" class="role-btn">家长端</button>
+    <button data-view="librarian" class="role-btn">馆员端</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ============ 孩子端 ============ -->
+  <section id="view-child" class="view active">
+    <div class="toolbar">
+      <label>我是
+        <select id="child-select"></select>
+      </label>
+      <span id="child-age" class="pill"></span>
+    </div>
+    <div id="child-content"></div>
+  </section>
+
+  <!-- ============ 家长端 ============ -->
+  <section id="view-parent" class="view">
+    <div class="toolbar">
+      <label>当前家长
+        <select id="parent-select"></select>
+      </label>
+      <button class="btn ghost" id="btn-sync-loans-parent">同步借阅数据</button>
+    </div>
+    <div class="grid-2">
+      <div>
+        <h2 class="section-h">报名活动</h2>
+        <div id="parent-enroll" class="cards"></div>
+        <h2 class="section-h">我的提醒</h2>
+        <div id="parent-notes" class="notes"></div>
+      </div>
+      <div>
+        <h2 class="section-h">阅读记录与待核验</h2>
+        <div id="parent-records"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 馆员端 ============ -->
+  <section id="view-librarian" class="view">
+    <div class="toolbar">
+      <label>当班馆员
+        <select id="lib-select"></select>
+      </label>
+      <label>活动
+        <select id="lib-activity"></select>
+      </label>
+      <button class="btn ghost" id="btn-sync-loans">同步借阅数据（模拟适配器轮询）</button>
+      <span id="lib-stock" class="pill green"></span>
+      <span class="grow"></span>
+      <div class="inline">
+        <input id="restock-n" type="number" min="1" value="1" class="narrow">
+        <button class="btn" id="btn-restock">补货并处理候补</button>
+      </div>
+      <div class="inline">
+        <input id="pickup-code" placeholder="凭证号 LIB-xx-xxxx">
+        <button class="btn navy" id="btn-pickup">核销领章</button>
+      </div>
+    </div>
+    <div id="lib-waitlist" class="waitlist-bar"></div>
+    <div id="lib-queue"></div>
+  </section>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card">
+    <button class="modal-x" id="modal-close">×</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
